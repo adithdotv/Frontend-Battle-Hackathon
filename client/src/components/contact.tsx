@@ -8,10 +8,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { useParallaxElement } from "@/hooks/use-parallax";
 import { Mail, Phone, MapPin } from "lucide-react";
 import type { InsertContactSubmission } from "@shared/schema";
 
 export function Contact() {
+  const parallaxBackground = useParallaxElement(-0.1);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -60,8 +62,17 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-violet-500/5 theme-transition">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-gradient-to-br from-primary/5 to-violet-500/5 theme-transition relative overflow-hidden">
+      {/* Parallax Background Elements */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={parallaxBackground}
+      >
+        <div className="absolute top-10 right-20 w-40 h-40 bg-primary/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-20 w-60 h-60 bg-violet-500/30 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
             <span className="gradient-text">Ready to Get Started?</span>

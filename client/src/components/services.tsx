@@ -1,12 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import { useParallaxElement } from "@/hooks/use-parallax";
 import type { Service } from "@shared/schema";
 
 export function Services() {
   const { data: services, isLoading } = useQuery<Service[]>({
     queryKey: ["/api/services"],
   });
+  
+  const parallaxCards = useParallaxElement(0.1);
 
   if (isLoading) {
     return (
@@ -50,9 +53,16 @@ export function Services() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services?.map((service) => (
-            <Card key={service.id} className="card-hover theme-transition border-0 shadow-lg">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" style={parallaxCards}>
+          {services?.map((service, index) => (
+            <Card 
+              key={service.id} 
+              className="card-hover theme-transition border-0 shadow-lg"
+              style={{
+                transform: `translateY(${index % 2 === 0 ? '20px' : '-20px'})`,
+                transition: 'transform 0.3s ease-out'
+              }}
+            >
               <CardContent className="p-8">
                 <div className={`w-12 h-12 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-6`}>
                   <i className={`${service.icon} text-white text-xl`}></i>
