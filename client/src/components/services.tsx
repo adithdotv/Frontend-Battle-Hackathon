@@ -49,7 +49,7 @@ export function Services() {
       rotate: 0,
       transition: {
         duration: 0.8,
-        ease: "back.out(1.7)",
+        ease: [0.68, -0.55, 0.265, 1.55],
         delay: 0.3,
       },
     },
