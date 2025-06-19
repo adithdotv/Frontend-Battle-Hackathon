@@ -110,6 +110,7 @@ The application uses four main tables:
 
 ## Changelog
 - June 19, 2025. Initial setup
+- June 19, 2025. Implemented custom 4-bar vertical scaling loader with wave effect animation
 
 ## User Preferences
 
