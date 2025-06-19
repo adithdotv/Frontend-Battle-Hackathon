@@ -849,6 +849,42 @@
     color: hsl(240, 10%, 3.9%);
   }
 
+  /* Brand Kits Dark Mode Fixes */
+  .dark .brand-kits-container {
+    background: rgba(15, 15, 15, 0.8);
+  }
+
+  .dark .brand-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+  }
+
+  .dark .brand-card:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(139, 92, 246, 0.3) !important;
+  }
+
+  .dark .brand-card.selected {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(139, 92, 246, 0.5) !important;
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3) !important;
+  }
+
+  .dark .brand-name {
+    color: white !important;
+  }
+
+  .dark .selector-circle {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .dark .selector-circle.active {
+    background: #8B5CF6 !important;
+    border-color: #8B5CF6 !important;
+  }
+
   /* Global Light Mode Enhancements */
   :root {
     --gradient-text: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 50%, #06B6D4 100%);

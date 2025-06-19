@@ -25,7 +25,7 @@ export function BrandKits() {
   };
 
   return (
-    <section className="py-20 bg-background dark:bg-slate-950 theme-transition">
+    <section className="py-20 bg-background dark:bg-background theme-transition">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
