@@ -1,36 +1,79 @@
+import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Card, CardContent } from "@/components/ui/card";
-import { Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import type { Service } from "@shared/schema";
 
 export function Services() {
   const { data: services, isLoading } = useQuery<Service[]>({
     queryKey: ["/api/services"],
   });
+  
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+  };
+
+  const iconVariants = {
+    hidden: { 
+      scale: 0,
+      rotate: -180,
+    },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        delay: 0.3,
+      },
+    },
+  };
 
   if (isLoading) {
     return (
-      <section id="services" className="py-20 bg-muted/50 theme-transition">
+      <section id="services" className="py-20 services-bg theme-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-              <span className="gradient-text">Our Services</span>
-            </h2>
+            <motion.h2 
+              className="text-4xl lg:text-5xl font-bold mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="gradient-text">Features & Services</span>
+            </motion.h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="services-grid">
             {[...Array(6)].map((_, i) => (
-              <Card key={i} className="animate-pulse">
-                <CardContent className="p-8">
-                  <div className="w-12 h-12 bg-muted rounded-xl mb-6"></div>
-                  <div className="h-6 bg-muted rounded mb-4"></div>
-                  <div className="h-20 bg-muted rounded mb-6"></div>
-                  <div className="space-y-2">
-                    <div className="h-4 bg-muted rounded"></div>
-                    <div className="h-4 bg-muted rounded"></div>
-                    <div className="h-4 bg-muted rounded"></div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div key={i} className="service-card-skeleton">
+                <div className="animate-pulse bg-muted/20 rounded-2xl h-80"></div>
+              </div>
             ))}
           </div>
         </div>
@@ -39,40 +82,102 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="py-20 bg-muted/50 theme-transition">
+    <section id="services" className="py-20 services-bg theme-transition">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            <span className="gradient-text">Our Services</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We offer comprehensive digital solutions tailored to your business needs
-          </p>
+          <motion.h2 
+            className="text-4xl lg:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="gradient-text">Features & Services</span>
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Comprehensive digital solutions with cutting-edge technology
+          </motion.p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services?.map((service) => (
-            <Card key={service.id} className="card-hover theme-transition border-0 shadow-lg">
-              <CardContent className="p-8">
-                <div className={`w-12 h-12 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center mb-6`}>
-                  <i className={`${service.icon} text-white text-xl`}></i>
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-muted-foreground mb-6">
+        <motion.div 
+          ref={containerRef}
+          className="services-grid"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {services?.map((service, index) => (
+            <motion.div
+              key={service.id}
+              className="service-card group"
+              variants={cardVariants}
+              whileHover={{ 
+                y: -12,
+                scale: 1.02,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+            >
+              <div className="service-card-content">
+                <motion.div 
+                  className="service-icon-container"
+                  variants={iconVariants}
+                >
+                  <div className="service-icon">
+                    <i className={`${service.icon} text-white text-2xl`}></i>
+                  </div>
+                  <div className="icon-glow"></div>
+                </motion.div>
+                
+                <motion.h3 
+                  className="service-title"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                >
+                  {service.title}
+                </motion.h3>
+                
+                <motion.p 
+                  className="service-description"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 + index * 0.1 }}
+                >
                   {service.description}
-                </p>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  {service.features.map((feature, index) => (
-                    <li key={index} className="flex items-center">
-                      <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+                </motion.p>
+                
+                <motion.div 
+                  className="service-price"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7 + index * 0.1 }}
+                >
+                  Premium Service
+                </motion.div>
+                
+                <motion.button 
+                  className="service-cta-button"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Learn More</span>
+                  <ArrowRight className="cta-arrow" />
+                  <ExternalLink className="cta-external" />
+                </motion.button>
+              </div>
+              
+              <div className="service-card-glow"></div>
+              <div className="service-card-border"></div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
