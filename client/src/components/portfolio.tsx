@@ -156,6 +156,55 @@ export function Portfolio() {
           </div>
         </div>
       </div>
+
+      {/* Portfolio Item Modal */}
+      <PopupModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={selectedItem?.title || ''}
+        size="lg"
+      >
+        {selectedItem && (
+          <div className="space-y-6">
+            <img
+              src={selectedItem.imageUrl}
+              alt={selectedItem.title}
+              className="w-full h-64 object-cover rounded-lg"
+            />
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Project Overview</h4>
+                <p className="text-muted-foreground">{selectedItem.description}</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Category</h4>
+                <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                  {selectedItem.category}
+                </span>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Technologies Used</h4>
+                <div className="flex flex-wrap gap-2">
+                  {['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind CSS'].map((tech, index) => (
+                    <span key={index} className="px-2 py-1 bg-muted rounded text-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex gap-3 pt-4">
+                <Button className="flex-1">
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Visit Live Site
+                </Button>
+                <Button variant="outline" className="flex-1">
+                  View Case Study
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </PopupModal>
     </section>
   );
 }

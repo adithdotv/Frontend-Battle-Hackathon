@@ -61,7 +61,7 @@ export function Navigation() {
                   key={id}
                   onClick={() => scrollToSection(id)}
                   className={`px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                    activeSection === id ? "text-primary" : "text-foreground"
+                    activeSection === id ? "nav-link-active text-primary" : "text-foreground"
                   }`}
                 >
                   {label}

@@ -11,6 +11,7 @@ import { BrandKits } from "@/components/brand-kits";
 import { EmissionsDashboard } from "@/components/emissions-dashboard";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -54,6 +55,7 @@ export default function Home() {
         <Contact />
       </section>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
