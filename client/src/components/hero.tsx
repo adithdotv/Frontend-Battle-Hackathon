@@ -1,10 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { useParallaxElement } from "@/hooks/use-parallax";
 
 export function Hero() {
-  const parallaxImage = useParallaxElement(-0.3);
-  const parallaxText = useParallaxElement(0.2);
-
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
@@ -20,20 +16,10 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="pt-16 min-h-screen flex items-center bg-gradient-to-br from-muted/50 to-muted theme-transition relative overflow-hidden">
-      {/* Parallax Background Elements */}
-      <div 
-        className="absolute inset-0 opacity-10"
-        style={parallaxImage}
-      >
-        <div className="absolute top-20 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-violet-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+    <section id="home" className="pt-16 min-h-screen flex items-center bg-gradient-to-br from-muted/50 to-muted theme-transition">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-fade-in" style={parallaxText}>
+          <div className="animate-fade-in">
             <h1 className="text-5xl lg:text-7xl font-bold mb-6">
               <span className="gradient-text">NextGen</span><br />
               <span className="text-foreground">Digital Solutions</span>
@@ -57,7 +43,7 @@ export function Hero() {
               </Button>
             </div>
           </div>
-          <div className="animate-slide-up" style={{ transform: `${parallaxImage.transform} scale(1.05)` }}>
+          <div className="animate-slide-up">
             <img 
               src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
               alt="Modern cityscape representing digital transformation" 

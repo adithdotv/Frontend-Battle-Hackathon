@@ -171,55 +171,6 @@
       opacity: 1;
     }
   }
-
-  /* Enhanced Parallax Effects */
-  .parallax-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .parallax-float-delayed {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: 2s;
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    33% {
-      transform: translateY(-10px) rotate(1deg);
-    }
-    66% {
-      transform: translateY(5px) rotate(-0.5deg);
-    }
-  }
-
-  /* Smooth scroll enhancement */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Parallax perspective */
-  .parallax-container {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-  }
-
-  .parallax-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .parallax-back {
-    transform: translateZ(-1px) scale(2);
-  }
-
-  .parallax-mid {
-    transform: translateZ(-0.5px) scale(1.5);
-  }
 }
 
 @keyframes spin {
