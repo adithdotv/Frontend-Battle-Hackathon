@@ -9,7 +9,7 @@ export function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "services", "portfolio", "testimonials", "contact"];
+      const sections = ["home", "statistics", "services", "portfolio", "customers", "testimonials", "brand-kits", "dashboard", "contact"];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -54,6 +54,7 @@ export function Navigation() {
                 { id: "services", label: "Services" },
                 { id: "portfolio", label: "Portfolio" },
                 { id: "testimonials", label: "Testimonials" },
+                { id: "dashboard", label: "Dashboard" },
                 { id: "contact", label: "Contact" }
               ].map(({ id, label }) => (
                 <button

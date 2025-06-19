@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PopupModal } from "./popup-modal";
 import type { PortfolioItem } from "@shared/schema";
 
 export function Portfolio() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: portfolioItems, isLoading } = useQuery<PortfolioItem[]>({
     queryKey: ["/api/portfolio"],
   });
