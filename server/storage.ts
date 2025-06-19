@@ -117,7 +117,7 @@ export class MemStorage implements IStorage {
       {
         title: "Healthcare Dashboard",
         description: "Patient management system with real-time analytics",
-        imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
         category: "Healthcare"
       },
       {
