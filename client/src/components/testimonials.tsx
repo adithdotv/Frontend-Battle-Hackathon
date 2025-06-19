@@ -10,7 +10,7 @@ export function Testimonials() {
 
   if (isLoading) {
     return (
-      <section id="testimonials" className="py-20 bg-background theme-transition">
+      <section id="testimonials" className="py-20 bg-muted/30 dark:bg-muted/20 theme-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6">
@@ -44,7 +44,7 @@ export function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="py-20 bg-background theme-transition">
+    <section id="testimonials" className="py-20 bg-muted/30 dark:bg-muted/20 theme-transition">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
