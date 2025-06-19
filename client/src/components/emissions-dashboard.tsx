@@ -72,12 +72,7 @@ export function EmissionsDashboard() {
   return (
     <section className="py-20 bg-slate-50 dark:bg-slate-900 theme-transition">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="dashboard-container"
-        >
+        <div className="dashboard-container">
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
@@ -89,12 +84,7 @@ export function EmissionsDashboard() {
           </div>
 
           {/* Filters Section */}
-          <motion.div 
-            className="filters-section mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <div className="filters-section mb-8">
             <div className="flex flex-wrap gap-6 justify-center items-center">
               <div className="filter-group">
                 <label className="filter-label">
@@ -103,15 +93,13 @@ export function EmissionsDashboard() {
                 </label>
                 <div className="filter-buttons">
                   {(["All", "Refurbishment", "New Build"] as FilterType[]).map((type) => (
-                    <motion.button
+                    <button
                       key={type}
                       className={`filter-pill ${typeFilter === type ? 'active' : ''}`}
                       onClick={() => setTypeFilter(type)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
                     >
                       {type}
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -120,28 +108,21 @@ export function EmissionsDashboard() {
                 <label className="filter-label">Status</label>
                 <div className="filter-buttons">
                   {(["All", "Complete", "Estimate"] as FilterStatus[]).map((status) => (
-                    <motion.button
+                    <button
                       key={status}
                       className={`filter-pill ${statusFilter === status ? 'active' : ''}`}
                       onClick={() => setStatusFilter(status)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
                     >
                       {status}
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Chart Container */}
-          <motion.div 
-            className="chart-container"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+          <div className="chart-container">
             <div className="chart-header">
               <h3 className="chart-title">Emissions by Project</h3>
               <Button 
@@ -208,11 +189,10 @@ export function EmissionsDashboard() {
                 {/* Bars */}
                 <div className="bars-container">
                   {filteredData.map((item) => (
-                    <motion.div
+                    <div
                       key={item.id}
                       className="bar-wrapper"
                       style={{ height: getBarHeight(item.value) }}
-                      whileHover={{ scale: 1.05 }}
                     >
                       <div
                         className="bar"
@@ -223,7 +203,7 @@ export function EmissionsDashboard() {
                       />
                       <div className="bar-value">{item.value}</div>
                       <div className="bar-label">{item.category}</div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -248,8 +228,8 @@ export function EmissionsDashboard() {
                 <span>New Build (Estimate)</span>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
