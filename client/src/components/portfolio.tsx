@@ -1,10 +1,30 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import type { PortfolioItem } from "@shared/schema";
 
 export function Portfolio() {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const { data: portfolioItems, isLoading } = useQuery<PortfolioItem[]>({
     queryKey: ["/api/portfolio"],
   });
+
+  const itemsPerView = 3;
+  const totalItems = portfolioItems?.length || 0;
+  const maxIndex = Math.max(0, totalItems - itemsPerView);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
 
   if (isLoading) {
     return (
@@ -15,12 +35,14 @@ export function Portfolio() {
               <span className="gradient-text">Our Portfolio</span>
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="animate-pulse">
-                <div className="bg-muted rounded-2xl h-64 mb-4"></div>
-              </div>
-            ))}
+          <div className="portfolio-carousel">
+            <div className="carousel-track">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="carousel-item animate-pulse">
+                  <div className="bg-muted rounded-2xl h-64 mb-4"></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -39,22 +61,67 @@ export function Portfolio() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioItems?.map((item) => (
-            <div key={item.id} className="group relative overflow-hidden rounded-2xl shadow-lg card-hover">
-              <img 
-                src={item.imageUrl} 
-                alt={item.title}
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-6 text-white">
-                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm">{item.description}</p>
+        {/* Carousel Container */}
+        <div className="portfolio-carousel">
+          {/* Navigation Buttons */}
+          <Button
+            variant="outline"
+            size="icon"
+            className="carousel-btn carousel-btn-prev"
+            onClick={prevSlide}
+            disabled={totalItems <= itemsPerView}
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="icon"
+            className="carousel-btn carousel-btn-next"
+            onClick={nextSlide}
+            disabled={totalItems <= itemsPerView}
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+
+          {/* Carousel Track */}
+          <div className="carousel-track">
+            <div 
+              className="carousel-slides"
+              style={{
+                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
+              }}
+            >
+              {portfolioItems?.map((item) => (
+                <div key={item.id} className="carousel-item">
+                  <div className="group relative overflow-hidden rounded-2xl shadow-lg card-hover">
+                    <img 
+                      src={item.imageUrl} 
+                      alt={item.title}
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                      <div className="p-6 text-white">
+                        <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                        <p className="text-sm">{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Carousel Indicators */}
+          <div className="carousel-indicators">
+            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+              <button
+                key={index}
+                className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
+                onClick={() => goToSlide(index)}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -111,6 +111,8 @@ The application uses four main tables:
 ## Changelog
 - June 19, 2025. Initial setup
 - June 19, 2025. Implemented custom 4-bar vertical scaling loader with wave effect animation
+- June 19, 2025. Added Brand Kits glassmorphic UI component with purple selection states
+- June 19, 2025. Implemented responsive carousel for portfolio section with smooth navigation
 
 ## User Preferences
 
