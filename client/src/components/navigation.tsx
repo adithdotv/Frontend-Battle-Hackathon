@@ -40,7 +40,7 @@ export function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-sm border-b border-border theme-transition">
+    <nav className="fixed top-0 w-full z-40 bg-background/80 dark:bg-background/90 backdrop-blur-sm border-b border-border dark:border-border theme-transition">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -74,7 +74,7 @@ export function Navigation() {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="hover:bg-muted"
+              className="hover:bg-muted dark:hover:bg-muted/80"
             >
               {theme === "dark" ? (
                 <Sun className="h-5 w-5" />

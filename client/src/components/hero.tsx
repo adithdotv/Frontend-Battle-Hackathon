@@ -16,7 +16,7 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="pt-16 min-h-screen flex items-center bg-gradient-to-br from-muted/50 to-muted theme-transition">
+    <section id="home" className="pt-16 min-h-screen flex items-center bg-gradient-to-br from-background to-muted/50 dark:from-background dark:to-muted/30 theme-transition">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
@@ -37,7 +37,7 @@ export function Hero() {
               <Button 
                 variant="outline"
                 onClick={scrollToPortfolio}
-                className="border-2 px-8 py-6 text-lg font-semibold hover:bg-muted"
+                className="border-2 border-primary dark:border-primary px-8 py-6 text-lg font-semibold hover:bg-muted dark:hover:bg-muted/80 text-foreground dark:text-foreground"
               >
                 View Our Work
               </Button>
