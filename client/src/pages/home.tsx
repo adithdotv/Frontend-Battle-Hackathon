@@ -8,6 +8,7 @@ import { Portfolio } from "@/components/portfolio";
 import { Customers } from "@/components/customers";
 import { Testimonials } from "@/components/testimonials";
 import { BrandKits } from "@/components/brand-kits";
+import { EmissionsDashboard } from "@/components/emissions-dashboard";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 
@@ -32,6 +33,7 @@ export default function Home() {
       <Customers />
       <Testimonials />
       <BrandKits />
+      <EmissionsDashboard />
       <Contact />
       <Footer />
     </div>
