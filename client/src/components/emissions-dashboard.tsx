@@ -207,20 +207,11 @@ export function EmissionsDashboard() {
 
                 {/* Bars */}
                 <div className="bars-container">
-                  {filteredData.map((item, index) => (
+                  {filteredData.map((item) => (
                     <motion.div
                       key={item.id}
                       className="bar-wrapper"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ 
-                        height: getBarHeight(item.value), 
-                        opacity: 1 
-                      }}
-                      transition={{ 
-                        duration: 0.8, 
-                        delay: 0.6 + index * 0.1,
-                        ease: "easeOut"
-                      }}
+                      style={{ height: getBarHeight(item.value) }}
                       whileHover={{ scale: 1.05 }}
                     >
                       <div
