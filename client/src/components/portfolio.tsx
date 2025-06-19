@@ -29,6 +29,16 @@ export function Portfolio() {
     setCurrentIndex(index);
   };
 
+  const openModal = (item: PortfolioItem) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedItem(null);
+  };
+
   if (isLoading) {
     return (
       <section id="portfolio" className="py-20 bg-muted/30 dark:bg-muted/20 theme-transition">
@@ -106,7 +116,26 @@ export function Portfolio() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                       <div className="p-6 text-white">
                         <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                        <p className="text-sm">{item.description}</p>
+                        <p className="text-sm mb-4">{item.description}</p>
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => openModal(item)}
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/20"
+                          >
+                            <Eye className="w-4 h-4 mr-2" />
+                            View Details
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            className="bg-white/20 hover:bg-white/30 text-white border-white/20"
+                          >
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            Visit Site
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
