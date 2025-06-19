@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Download, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -55,7 +54,7 @@ export function EmissionsDashboard() {
 
   const handleDownload = () => {
     const csvContent = "data:text/csv;charset=utf-8," + 
-      "Category,Year,Value (kgCO₂e/m²),Type,Status\n" +
+      "Category,Year,Value,Type,Status\n" +
       filteredData.map(item => 
         `${item.category},${item.year},${item.value},${item.type},${item.status}`
       ).join("\n");
@@ -130,12 +129,7 @@ export function EmissionsDashboard() {
                 className="download-btn"
                 variant="outline"
               >
-                <motion.div
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                </motion.div>
+                <Download className="h-4 w-4 mr-2" />
                 Download Data
               </Button>
             </div>
